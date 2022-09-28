@@ -15,12 +15,11 @@ export default function SignUpForm() {
     try {
       await createUser(values);
       navigate("/");
-      console.log(response.data);
     } catch (error) {
-      if (errors.code === "ERR_BAD_REQUEST") {
+      if (error.code === "ERR_BAD_REQUEST") {
         alert("Email already registered!");
       } else {
-        alert(errors);
+        alert(error);
       }
       setEnable(true);
     }
@@ -40,6 +39,7 @@ export default function SignUpForm() {
     <Container>
       <Form onSubmit={handleSubmit} autoComplete="off" enable={enable}>
         <p> Create an account!</p>
+
         <label htmlFor="username" className="form__label">
           Username
         </label>
