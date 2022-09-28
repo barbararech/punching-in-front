@@ -35,6 +35,7 @@ export const Container = styled.div`
     padding: 50px 0px;
     align-items: center;
     justify-content: flex-start;
+    height: 100%;
 
     img:nth-child(1) {
       width: 90%;

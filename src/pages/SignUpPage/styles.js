@@ -6,7 +6,14 @@ export const Main = styled.main`
 
 export const Container = styled.div`
   display: flex;
-  @media (max-width: 768px) {
+  @media (max-width: 1140px) {
     flex-direction: column;
   }
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
