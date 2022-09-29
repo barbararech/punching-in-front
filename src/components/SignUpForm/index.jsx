@@ -38,7 +38,7 @@ export default function SignUpForm() {
   return (
     <Container>
       <Form onSubmit={handleSubmit} autoComplete="off" enable={enable}>
-        <p> Create an account!</p>
+        <p>Create an account!</p>
 
         <label htmlFor="username" className="form__label">
           Username

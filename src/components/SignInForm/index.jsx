@@ -1,11 +1,13 @@
 import { Container, Form } from "../SignUpForm/styles";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signInUser } from "../../services/api";
 import { signInSchema } from "../../schemas/index";
+import { HandlerContext } from "../../contexts/contextHandler";
 
 export default function SignInForm() {
+  const { userData, setUserData } = useContext(HandlerContext);
   const [enable, setEnable] = useState(true);
   const navigate = useNavigate();
 
@@ -13,7 +15,10 @@ export default function SignInForm() {
     setEnable(false);
 
     try {
-      await signInUser(values);
+      const promise = await signInUser(values);
+      console.log(promise)
+      setUserData(promise);
+
       navigate("/home");
     } catch (error) {
       if (error.code === "ERR_BAD_REQUEST") {
@@ -21,6 +26,7 @@ export default function SignInForm() {
       } else {
         alert(error);
       }
+
       setEnable(true);
     }
   };
@@ -36,8 +42,8 @@ export default function SignInForm() {
     });
   return (
     <Container>
-       <Form onSubmit={handleSubmit} autoComplete="off" enable={enable}>
-        <p> Login</p>
+      <Form onSubmit={handleSubmit} autoComplete="off" enable={enable}>
+        <p>Login</p>
 
         <label htmlFor="email" className="form__label">
           Email
