@@ -16,11 +16,8 @@ export default function SignUpForm() {
       await createUser(values);
       navigate("/");
     } catch (error) {
-      if (error.code === "ERR_BAD_REQUEST") {
-        alert("Email already registered!");
-      } else {
-        alert(error);
-      }
+      console.log(error);
+      alert(error.response.data);
       setEnable(true);
     }
   };

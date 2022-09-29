@@ -16,17 +16,13 @@ export default function SignInForm() {
 
     try {
       const promise = await signInUser(values);
-      console.log(promise)
+      console.log(promise);
       setUserData(promise);
 
       navigate("/home");
     } catch (error) {
-      if (error.code === "ERR_BAD_REQUEST") {
-        alert("Unauthorized!");
-      } else {
-        alert(error);
-      }
-
+      console.log(error)
+      alert(error.response.data);
       setEnable(true);
     }
   };
