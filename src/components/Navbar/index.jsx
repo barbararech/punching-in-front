@@ -1,11 +1,16 @@
 import * as React from "react";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { Link as LinkReact } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import TemporaryDrawer from "../Menu";
+import { HandlerContext } from "../../contexts/contextHandler";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export const ResponsiveAppBar = () => {
+  const { logout } = useContext(HandlerContext);
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -18,9 +23,14 @@ export const ResponsiveAppBar = () => {
           <Typography component="div" sx={{ flexGrow: 1, mt: 1 }}>
             <img src={logo} alt="logo" width={300} edge="start" />
           </Typography>
-          <LinkReact to="/signout">
+          <Button
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
+          >
             <ExitToAppIcon style={{ color: "#C58944" }}>Login</ExitToAppIcon>
-          </LinkReact>
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

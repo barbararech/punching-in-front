@@ -9,9 +9,9 @@ function HandlerProvider({ children }) {
 
   const logout = () => {
     setUserData("empty");
-    localStorage.removeItem("linkrUserData");
+    localStorage.removeItem("punchingInUserData");
   };
-  
+
   return (
     <HandlerContext.Provider
       value={{
