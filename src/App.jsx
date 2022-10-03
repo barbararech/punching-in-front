@@ -4,6 +4,7 @@ import HandlerProvider from "./contexts/contextHandler";
 import SignInPage from "./pages/SignInPage/index";
 import SignUpPage from "./pages/SignUpPage/index";
 import HomePage from "./pages/HomePage/index";
+import NewApplicationPage from "./pages/NewApplicationPage";
 // import ArchivePage from "./ArchivePage.jsx";
 // import TipsPage from "./TipsPage.jsx";
 // import refreshAxiosContext from "../contexts/refreshAxiosContext.jsx";
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/newapplication" element={<NewApplicationPage/>} />
           {/* <Route path="/archive" element={<ArchivePage />} />
             <Route path="/tips" element={<TipsPage />} /> */}
         </Routes>
