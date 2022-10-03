@@ -8,6 +8,7 @@ export const Container = styled.section`
     right: 35px;
     top: 6px;
     color: #9b9999;
+    z-index: 1;
   }
 
   .archiveIcon {
@@ -29,8 +30,8 @@ export const Container = styled.section`
     font-weight: 400;
     font-family: "Poppins";
     color: #828282;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
   }
 
   .expand {
@@ -43,40 +44,67 @@ export const Container = styled.section`
     margin-bottom: 8px;
   }
 
-  .content{
+  .content {
     margin-left: 30px;
     margin-right: 40%;
   }
 
-  .subcontent{
+  .subcontent {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
   }
 
-  .contentTasks{
+  .contentTasks {
     margin-left: 40px;
-    margin-right: 38.5%;
+    margin-right: 40%;
   }
 
-  .task{
-    display:flex;
+  .task {
+    display: flex;
     align-items: center;
   }
 
-  .tasksLabel{
+  .tasksLabel {
     font-size: 16px;
   }
 
-  .openInNewIcon{
+  .openInNewIcon {
     margin-left: 10px;
   }
 
-  .checkIcon{
+  .checkIcon {
     margin-right: 10px;
   }
 
-  .heardback{
-    color: ${(props) => (props.heardBack ? "#1cd34a" : "#b81111")};
+  .priority {
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    font-size: 26px;
+    color: #eb5757;
+    background: rgba(235, 87, 87, 0.2);
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 15px;
+    width: 130px;
+    height: 30px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .attachments {
+    margin-left: 10px;
+  }
+
+  .myattachment {
+    display: flex;
+  }
+
+  .articleIcon{
+    margin-right:10px;
   }
 `;
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Card,
+  Link,
   Collapse,
   CardActions,
   CardContent,
@@ -19,6 +20,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ArticleIcon from "@mui/icons-material/Article";
 
 const bull = (
   <Box
@@ -51,8 +53,19 @@ export default function BasicCard() {
             <Typography component="div">
               <Typography className="title">Company Name</Typography>
               <Typography className="subtitle">Role</Typography>
-              <BorderColorIcon className="editIcon" />
-              <ArchiveIcon className="archiveIcon" />
+
+              {open ? (
+                <>
+                  <Link href="/applications/:id/edit" underline="none">
+                    <BorderColorIcon className="editIcon" />
+                  </Link>
+                  <ArchiveIcon className="archiveIcon" />
+                </>
+              ) : (
+                <Typography component="div" className="priority">
+                  High Priority
+                </Typography>
+              )}
             </Typography>
           </ListItemButton>
 
@@ -70,7 +83,11 @@ export default function BasicCard() {
             </Typography>
 
             <Divider className="divider" />
-            <Typography component="div" className="contentTasks" color={taskIsFinished? "#029866" : "	#ff9966"}>
+            <Typography
+              component="div"
+              className="contentTasks"
+              color={taskIsFinished ? "#029866" : "	#ff9966"}
+            >
               <Typography component="div" className="subcontent">
                 <Typography className="task" gutterBottom>
                   <CheckCircleIcon className="checkIcon" />
@@ -97,6 +114,21 @@ export default function BasicCard() {
               <Typography component="div" className="subcontent">
                 <Typography className="subtitle" gutterBottom>
                   My attachments
+                </Typography>
+              </Typography>
+            </Typography>
+            <Divider className="divider" />
+            <Typography component="div" className="content">
+              <Typography component="div" className="subcontent">
+                <Typography className="attachments" gutterBottom>
+                  <Typography className="myattachment" gutterBottom>
+                    <ArticleIcon  className="articleIcon"/>
+                    My resume
+                  </Typography>
+                  <Typography className="myattachment" gutterBottom>
+                    <ArticleIcon className="articleIcon"/>
+                    Challange answers
+                  </Typography>
                 </Typography>
               </Typography>
             </Typography>
@@ -127,7 +159,7 @@ export default function BasicCard() {
             </Typography>
             <Divider className="divider" />
             <Typography component="div" className="content">
-              <Typography component="div" className="subcontent">
+              <Typography component="div" className="attachments">
                 nothing here!
               </Typography>
             </Typography>
