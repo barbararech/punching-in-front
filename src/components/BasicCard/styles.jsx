@@ -48,7 +48,7 @@ export const Container = styled.section`
 
   .content {
     margin-left: 30px;
-    margin-right: 35%;
+    margin-right: 20%;
   }
 
   .subcontent {
@@ -58,7 +58,7 @@ export const Container = styled.section`
 
   .contentTasks {
     margin-left: 40px;
-    margin-right: 35%;
+    margin-right: 20%;
   }
 
   .task {

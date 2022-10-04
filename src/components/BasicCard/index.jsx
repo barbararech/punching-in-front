@@ -18,9 +18,11 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ErrorIcon from "@mui/icons-material/Error";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArticleIcon from "@mui/icons-material/Article";
+import { archivedCard } from "../../services/api";
+import { useState, useEffect, useContext } from "react";
+import { HandlerContext } from "../../contexts/contextHandler";
 
 const bull = (
   <Box
@@ -43,29 +45,34 @@ export default function BasicCard({
   attachments,
   steps,
   index,
+  config,
 }) {
   const [open, setOpen] = React.useState(false);
+  const { refresh, setRefresh } = useContext(HandlerContext);
 
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const archiveCard = async (id) =>{
-    // try {
-    //   const response = await archivedCard(id);
-    //   console.log("archived")
-    // } catch (error) {
-    //   console.log(error);
-    //   alert(error.message);
-    // }
-  }
-  
+  const archiveCard = async (id, config) => {
+    try {
+      itsArchived = true;
+      await archivedCard(id, itsArchived, config);
+      setRefresh(!refresh);
+    } catch (error) {
+      console.log(error);
+      alert(error.message);
+    }
+  };
 
   return (
     <Container priority={priority} key={index}>
       <Card sx={{ minWidth: 175 }}>
         <CardContent>
-          <ListItemButton onClick={() => handleClick(id)} sx={{ position: "relative" }}>
+          <ListItemButton
+            onClick={() => handleClick()}
+            sx={{ position: "relative" }}
+          >
             {open ? (
               <ExpandLess className="expand" />
             ) : (
@@ -80,7 +87,10 @@ export default function BasicCard({
                   <Link href={`/applications/${id}/edit`} underline="none">
                     <BorderColorIcon className="editIcon" />
                   </Link>
-                  <ArchiveIcon className="archiveIcon" onclick={archiveCard}/>
+                  <ArchiveIcon
+                    className="archiveIcon"
+                    onClick={() => archiveCard(id, config)}
+                  />
                 </>
               ) : (
                 <Typography component="div" className="priority">
@@ -176,7 +186,7 @@ function RenderTasks(steps) {
           color={itsFinished ? "#029866" : "	#black"}
         >
           <Typography component="div" className="subcontent">
-            <Typography className="task" gutterBottom>
+            <Typography className="task" gutterBottom component={"span"}>
               {itsFinished ? (
                 <CheckCircleIcon className="checkIcon" />
               ) : (

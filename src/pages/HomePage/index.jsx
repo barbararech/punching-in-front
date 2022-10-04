@@ -10,7 +10,7 @@ import BasicCard from "../../components/BasicCard";
 export default function HomePage() {
   const { userData, setUserData } = useContext(HandlerContext);
   const [applications, setApplications] = useState([]);
-  const [refreshAxios, setRefreshAxios] = useState(false);
+  const { refresh, setRefresh } = useContext(HandlerContext);
 
   const config = {
     headers: {
@@ -29,14 +29,12 @@ export default function HomePage() {
       }
     }
     ViewUnarchivedCards();
-  }, [refreshAxios]);
+  }, [refresh]);
 
   function RenderCards() {
-    console.log(applications)
-    if(applications.length === 0){
-      return (
-       <Message> nothing here!</Message>
-      )
+    console.log(applications);
+    if (applications.length === 0) {
+      return <Message> nothing here!</Message>;
     }
 
     return applications.map(
@@ -51,7 +49,7 @@ export default function HomePage() {
         itsArchived,
         attachments,
         steps,
-        index
+        index,
       }) => {
         return (
           <BasicCard
@@ -66,6 +64,7 @@ export default function HomePage() {
             attachments={attachments}
             steps={steps}
             index={index}
+            config={config}
           />
         );
       }
