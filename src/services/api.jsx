@@ -18,3 +18,11 @@ export async function viewUnarchivedCards(config) {
   const response = await api.get("/applications", config);
   return response.data;
 }
+
+
+export async function archivedCard(id) {
+  // const response = await api.put("/applications/id/edit", config);
+  // return response.data;
+}
+
+

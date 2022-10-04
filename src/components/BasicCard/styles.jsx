@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section`
   padding-left: 10%;
   padding-right: 10%;
-  padding-top:  80px;
+  padding-top: 80px;
 
   .editIcon {
     position: absolute;
@@ -48,7 +48,7 @@ export const Container = styled.section`
 
   .content {
     margin-left: 30px;
-    margin-right: 40%;
+    margin-right: 35%;
   }
 
   .subcontent {
@@ -58,7 +58,7 @@ export const Container = styled.section`
 
   .contentTasks {
     margin-left: 40px;
-    margin-right: 40%;
+    margin-right: 35%;
   }
 
   .task {
@@ -71,7 +71,9 @@ export const Container = styled.section`
   }
 
   .openInNewIcon {
-    margin-left: 10px;
+    margin-left: 3px;
+    font-size:20px;
+    padding-bottom:10px;
   }
 
   .checkIcon {
@@ -83,8 +85,8 @@ export const Container = styled.section`
     right: 0px;
     top: 6px;
     font-size: 26px;
-    color: #eb5757;
-    background: rgba(235, 87, 87, 0.2);
+    color: ${({ priority }) => handleColorType(priority)};
+    background: ${({ priority }) => handleBackgroundType(priority)};
     border-radius: 18px;
     font-size: 14px;
     line-height: 15px;
@@ -101,12 +103,37 @@ export const Container = styled.section`
     margin-left: 10px;
   }
 
+  .observations {
+    margin-left: 30px;
+  }
+
   .myattachment {
     display: flex;
   }
 
-  .articleIcon{
-    margin-right:10px;
+  .articleIcon {
+    margin-right: 10px;
   }
 `;
 
+const handleColorType = (priority) => {
+  switch (priority) {
+    case "high":
+      return "#eb5757";
+    case "medium":
+      return "#219653";
+    default:
+      return "#2F80ED";
+  }
+};
+
+const handleBackgroundType = (priority) => {
+  switch (priority) {
+    case "high":
+      return "rgba(235, 87, 87, 0.2)";
+    case "medium":
+      return "rgba(36, 151, 86, 0.2);";
+    default:
+      return " rgba(47, 128, 237, 0.25);";
+  }
+};

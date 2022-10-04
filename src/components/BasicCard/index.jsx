@@ -31,39 +31,60 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard() {
-  const [open, setOpen] = React.useState(true);
-  const [heardBack, setHeardBack] = React.useState(false);
-  const [taskIsFinished, seTtaskIsFinished] = React.useState(true);
+export default function BasicCard({
+  id,
+  companyName,
+  roleName,
+  priority,
+  jobDescription,
+  observations,
+  heardBack,
+  itsArchived,
+  attachments,
+  steps,
+  index,
+}) {
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
 
+  const archiveCard = async (id) =>{
+    // try {
+    //   const response = await archivedCard(id);
+    //   console.log("archived")
+    // } catch (error) {
+    //   console.log(error);
+    //   alert(error.message);
+    // }
+  }
+  
+
   return (
-    <Container>
+    <Container priority={priority} key={index}>
       <Card sx={{ minWidth: 175 }}>
         <CardContent>
-          <ListItemButton onClick={handleClick} sx={{ position: "relative" }}>
+          <ListItemButton onClick={() => handleClick(id)} sx={{ position: "relative" }}>
             {open ? (
               <ExpandLess className="expand" />
             ) : (
               <ExpandMore className="expand" />
             )}
             <Typography component="div">
-              <Typography className="title">Company Name</Typography>
-              <Typography className="subtitle">Role</Typography>
+              <Typography className="title">{companyName}</Typography>
+              <Typography className="subtitle">{roleName}</Typography>
 
               {open ? (
                 <>
-                  <Link href="/applications/:id/edit" underline="none">
+                  <Link href={`/applications/${id}/edit`} underline="none">
                     <BorderColorIcon className="editIcon" />
                   </Link>
-                  <ArchiveIcon className="archiveIcon" />
+                  <ArchiveIcon className="archiveIcon" onclick={archiveCard}/>
                 </>
               ) : (
                 <Typography component="div" className="priority">
-                  High Priority
+                  {priority} priority
                 </Typography>
               )}
             </Typography>
@@ -83,44 +104,15 @@ export default function BasicCard() {
             </Typography>
 
             <Divider className="divider" />
-            <Typography
-              component="div"
-              className="contentTasks"
-              color={taskIsFinished ? "#029866" : "	#ff9966"}
-            >
-              <Typography component="div" className="subcontent">
-                <Typography className="task" gutterBottom>
-                  <CheckCircleIcon className="checkIcon" />
-                  Send CV
-                </Typography>
-                <Typography className="tasksLabel" gutterBottom>
-                  On track!
-                </Typography>
-                
-              </Typography>
-            </Typography>
-            <Typography
-              component="div"
-              className="contentTasks"
-              color={taskIsFinished ? "#029866" : "	#ff9966"}
-            >
-              <Typography component="div" className="subcontent">
-                <Typography className="task" gutterBottom>
-                  <CheckCircleIcon className="checkIcon" />
-                  Send CV
-                </Typography>
-                <Typography className="tasksLabel" gutterBottom>
-                  On track!
-                </Typography>
-                
-              </Typography>
-            </Typography>
+            {RenderTasks(steps)}
 
             <Divider className="divider" />
             <Typography component="div" className="content">
               <Typography component="div" className="subcontent">
                 <Typography className="subtitle" gutterBottom>
-                  Job description
+                  <Link href={jobDescription} underline="none" color="gray">
+                    Job description
+                  </Link>
                   <OpenInNewIcon className="openInNewIcon" />
                 </Typography>
               </Typography>
@@ -135,20 +127,7 @@ export default function BasicCard() {
               </Typography>
             </Typography>
             <Divider className="divider" />
-            <Typography component="div" className="content">
-              <Typography component="div" className="subcontent">
-                <Typography className="attachments" gutterBottom>
-                  <Typography className="myattachment" gutterBottom>
-                    <ArticleIcon  className="articleIcon"/>
-                    My resume
-                  </Typography>
-                  <Typography className="myattachment" gutterBottom>
-                    <ArticleIcon className="articleIcon"/>
-                    Challange answers
-                  </Typography>
-                </Typography>
-              </Typography>
-            </Typography>
+            {RenderAttachments(attachments)}
 
             <Divider className="divider" />
             <Typography component="div" className="content">
@@ -161,7 +140,7 @@ export default function BasicCard() {
                   color={heardBack ? "#029866" : "error"}
                   gutterBottom
                 >
-                  No
+                  {heardBack ? "Yes" : "No"}
                 </Typography>
               </Typography>
             </Typography>
@@ -175,9 +154,9 @@ export default function BasicCard() {
               </Typography>
             </Typography>
             <Divider className="divider" />
-            <Typography component="div" className="content">
+            <Typography component="div" className="observations">
               <Typography component="div" className="attachments">
-                nothing here!
+                {observations ? observations : "nothing here!"}
               </Typography>
             </Typography>
           </Collapse>
@@ -185,4 +164,54 @@ export default function BasicCard() {
       </Card>
     </Container>
   );
+}
+
+function RenderTasks(steps) {
+  return steps.map(({ name, deadline, itsFinished }) => {
+    return (
+      <>
+        <Typography
+          component="div"
+          className="contentTasks"
+          color={itsFinished ? "#029866" : "	#black"}
+        >
+          <Typography component="div" className="subcontent">
+            <Typography className="task" gutterBottom>
+              {itsFinished ? (
+                <CheckCircleIcon className="checkIcon" />
+              ) : (
+                <RadioButtonUncheckedIcon className="checkIcon" />
+              )}
+
+              {name}
+            </Typography>
+            <Typography className="tasksLabel" gutterBottom>
+              {itsFinished ? " On track!" : "Not done yet!"}
+            </Typography>
+          </Typography>
+        </Typography>
+      </>
+    );
+  });
+}
+
+function RenderAttachments(attachments) {
+  return attachments.map(({ name, link }) => {
+    return (
+      <>
+        <Typography component="div" className="content">
+          <Typography component="div" className="subcontent">
+            <Typography className="attachments" gutterBottom>
+              <Link href={link} underline="none" color="black">
+                <Typography className="myattachment" gutterBottom>
+                  <ArticleIcon className="articleIcon" />
+                  {name}
+                </Typography>
+              </Link>
+            </Typography>
+          </Typography>
+        </Typography>
+      </>
+    );
+  });
 }

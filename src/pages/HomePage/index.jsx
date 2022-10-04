@@ -1,5 +1,5 @@
 import React from "react";
-import { Main, Container } from "./styles";
+import { Main, Container, Message } from "./styles";
 import { ResponsiveAppBar } from "../../components/Navbar/index";
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ export default function HomePage() {
         setApplications(response.applications);
       } catch (error) {
         console.log(error);
-        alert(error.response);
+        alert(error.message);
       }
     }
     ViewUnarchivedCards();
@@ -35,7 +35,7 @@ export default function HomePage() {
     console.log(applications)
     if(applications.length === 0){
       return (
-        <p>nothing here!</p>
+       <Message> nothing here!</Message>
       )
     }
 
@@ -51,6 +51,7 @@ export default function HomePage() {
         itsArchived,
         attachments,
         steps,
+        index
       }) => {
         return (
           <BasicCard
@@ -64,6 +65,7 @@ export default function HomePage() {
             itsArchived={itsArchived}
             attachments={attachments}
             steps={steps}
+            index={index}
           />
         );
       }
