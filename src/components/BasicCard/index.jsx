@@ -96,6 +96,23 @@ export default function BasicCard() {
                 <Typography className="tasksLabel" gutterBottom>
                   On track!
                 </Typography>
+                
+              </Typography>
+            </Typography>
+            <Typography
+              component="div"
+              className="contentTasks"
+              color={taskIsFinished ? "#029866" : "	#ff9966"}
+            >
+              <Typography component="div" className="subcontent">
+                <Typography className="task" gutterBottom>
+                  <CheckCircleIcon className="checkIcon" />
+                  Send CV
+                </Typography>
+                <Typography className="tasksLabel" gutterBottom>
+                  On track!
+                </Typography>
+                
               </Typography>
             </Typography>
 

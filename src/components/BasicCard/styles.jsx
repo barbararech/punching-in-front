@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  padding: 100px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top:  80px;
 
   .editIcon {
     position: absolute;
