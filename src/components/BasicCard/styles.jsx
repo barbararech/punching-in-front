@@ -58,16 +58,33 @@ export const Container = styled.section`
 
   .contentTasks {
     margin-left: 40px;
-    margin-right: 20%;
+  }
+
+  .circleIcon{
+      font-size:10px;
+      margin-right:5px;
   }
 
   .task {
     display: flex;
     align-items: center;
+    
   }
 
   .tasksLabel {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content: flex-start;
     font-size: 16px;
+    width:113px;
+
+    margin-right: 14%;
+  }
+
+  .tasksDeadline {
+    font-size: 12px;
+    color:gray;
   }
 
   .openInNewIcon {

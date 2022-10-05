@@ -23,6 +23,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import { archivedCard } from "../../services/api";
 import { useState, useEffect, useContext } from "react";
 import { HandlerContext } from "../../contexts/contextHandler";
+import CircleIcon from "@mui/icons-material/Circle";
 
 const bull = (
   <Box
@@ -192,11 +193,17 @@ function RenderTasks(steps) {
               ) : (
                 <RadioButtonUncheckedIcon className="checkIcon" />
               )}
-
               {name}
             </Typography>
-            <Typography className="tasksLabel" gutterBottom>
-              {itsFinished ? " On track!" : "Not done yet!"}
+
+            <Typography className="tasksLabel" component="div" gutterBottom>
+              <Typography className="tasksTrack" component="div" >
+                <CircleIcon className="circleIcon" />
+                {itsFinished ? "On track!" : "Not done yet!"}
+              </Typography>
+              <Typography className="tasksDeadline" component="div" gutterBottom>
+                {deadline}
+              </Typography>
             </Typography>
           </Typography>
         </Typography>
