@@ -20,8 +20,11 @@ export const ResponsiveAppBar = () => {
       >
         <Toolbar>
           <TemporaryDrawer />
+
           <Typography component="div" sx={{ flexGrow: 1, mt: 1 }}>
-            <img src={logo} alt="logo" width={300} edge="start" />
+            <Link to="/home">
+              <img src={logo} alt="logo" width={300} edge="start" />
+            </Link>
           </Typography>
           <Button
             onClick={() => {
