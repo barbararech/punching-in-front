@@ -15,18 +15,10 @@ import {
   Grid,
 } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 import { Container, ContainerTasks } from "./styles";
 import { useFormik } from "formik";
-
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-//   >
-//     •
-//   </Box>
-// );
 
 export default function NewCard() {
   const onSubmit = async (values) => {
@@ -77,9 +69,6 @@ export default function NewCard() {
             handleChange
           )}
           {SelectFields(values.priority, values.heardBack, handleChange)}
-          <Typography className="subtitle" gutterBottom>
-            Tasks
-          </Typography>
           {TasksForm(stepsGroup, setStepsGroup)}
         </CardContent>
         <CardActions>
@@ -204,23 +193,35 @@ function TasksForm(stepsGroup, setStepsGroup) {
     setStepsGroup(newStepsGroup);
   };
 
-  let handleSubmit = (event) => {
-    event.preventDefault();
-    alert(JSON.stringify(stepsGroup));
-  };
   return (
     <ContainerTasks>
-      <form onSubmit={handleSubmit}>
+      <Typography className="subtitle" gutterBottom>
+        Tasks
+        <button
+          className="buttonAdd"
+          type="button"
+          onClick={() => addFormFields()}
+        >
+          <AddCircleOutlineIcon className="addIcon" />
+        </button>
+      </Typography>
+      <form>
         {stepsGroup.map((element, index) => (
-          <div className="form-inline" key={index}>
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "98%" },
-              }}
-              noValidate
-              autoComplete="off"
-            >
+          <>
+            <Typography className="paragraph" gutterBottom>
+              Task {index+1}
+              {index ? (
+                <button
+                  type="button"
+                  className="button remove"
+                  onClick={() => removeFormFields(index)}
+                >
+                   <RemoveCircleOutlineIcon className="removeIcon" />
+                </button>
+              ) : null}
+            </Typography>
+
+            <div className="form-inline" key={index}>
               <TextField
                 id="taskName"
                 label="task name"
@@ -230,6 +231,7 @@ function TasksForm(stepsGroup, setStepsGroup) {
                 name="name"
                 value={element.name || ""}
                 onChange={(e) => handleChange(index, e)}
+                fullWidth
               />
               <TextField
                 id="taskDeadline"
@@ -242,82 +244,27 @@ function TasksForm(stepsGroup, setStepsGroup) {
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
               />
-              <TextField
-                id="itsFinished"
-                label="its finished?"
-                variant="standard"
-                color="success"
-                type="text"
-                name="itsFinished"
-                value={element.itsFinished || ""}
-                onChange={(e) => handleChange(index, e)}
-              />
-              {index ? (
-                <button
-                  type="button"
-                  className="button remove"
-                  onClick={() => removeFormFields(index)}
+
+              <FormControl fullWidth className="selectInputTasks">
+                <InputLabel id="its Finished?">its Finished?</InputLabel>
+                <Select
+                  labelId="its Finished?"
+                  id="itsFinished"
+                  name="itsFinished"
+                  value={element.itsFinished || ""}
+                  label="its Finished?"
+                  onChange={(e) => handleChange(index, e)}
+                  color="success"
+                  fullWidth
                 >
-                  Remove
-                </button>
-              ) : null}
-            </Box>
-          </div>
+                  <MenuItem value={true}>yes</MenuItem>
+                  <MenuItem value={false}>no</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          </>
         ))}
-        <div className="button-section">
-          <button
-            className="button add"
-            type="button"
-            onClick={() => addFormFields()}
-          >
-            Add
-          </button>
-          <button className="button submit" type="submit">
-            Submit
-          </button>
-        </div>
       </form>
     </ContainerTasks>
   );
 }
-
-// function TasksForm(name, deadline, itsFinished, handleChange) {
-//     return (
-//       <>
-//         <Box
-//           component="form"
-//           sx={{
-//             "& > :not(style)": { m: 1, width: "98%" },
-//           }}
-//           noValidate
-//           autoComplete="off"
-//         >
-//           <TextField
-//             id="name"
-//             label="task name"
-//             variant="standard"
-//             color="success"
-//             value={name}
-//             onChange={handleChange}
-//           />
-//         </Box>
-
-//         <Box sx={{ minWidth: 275, marginTop: 2 }}>
-//           <FormControl fullWidth>
-//             <InputLabel id="demo-simple-select-label">its finished?</InputLabel>
-//             <Select
-//               labelId="its finished?"
-//               id="itsfinished"
-//               value={itsFinished}
-//               label="its finished?"
-//               onChange={handleChange}
-//               color="success"
-//             >
-//               <MenuItem value={"yes"}>yes</MenuItem>
-//               <MenuItem value={"no"}>no</MenuItem>
-//             </Select>
-//           </FormControl>
-//         </Box>
-//       </>
-//     );
-//   }

@@ -13,31 +13,53 @@ export const Container = styled.section`
 
   .subtitle {
     display: flex;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     font-family: "Poppins";
     margin-top: 30px;
-    justify-content: space-between;
   }
 `;
 
 export const ContainerTasks = styled.section`
-    display:flex;
-    flex-direction:column;
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  width: 100%;
 
-    .form-inline {  
+  .form-inline {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    width: 100%;
   }
 
+  .selectInputTasks {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
-  .subtitle {
+  button {
+    border: none;
+    background-color: Transparent;
+  }
+
+  .addIcon{
+    color: #05995b;
+    font-size:20px;
+    cursor:pointer;
+  }
+
+  .removeIcon{
+    color: #df2a1d;
+    font-size:20px;
+    cursor:pointer;
+  }
+
+  .paragraph{
     display: flex;
     font-size: 16px;
     font-weight: 600;
     font-family: "Poppins";
-    margin-top: 30px;
-    justify-content: space-between;
+    margin-top: 10px;
   }
 `;
