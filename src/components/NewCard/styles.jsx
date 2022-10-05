@@ -15,7 +15,7 @@ export const Container = styled.section`
     font-size: 16px;
     font-weight: 600;
     font-family: "Poppins";
-    margin-top:10px;
+    margin-top:30px;
   }
 `;
 
