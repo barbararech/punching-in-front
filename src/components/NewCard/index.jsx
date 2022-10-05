@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import {
   Box,
   Card,
@@ -11,9 +12,11 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Grid,
 } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-import { Container } from "./styles";
+import { Container, ContainerTasks } from "./styles";
 import { useFormik } from "formik";
 
 // const bull = (
@@ -26,17 +29,23 @@ import { useFormik } from "formik";
 // );
 
 export default function NewCard() {
-
   const onSubmit = async (values) => {
     try {
+      values.steps = stepsGroup;
+      alert(JSON.stringify(values, null));
       //   const promise = await signInUser(values);
-        console.log(values);
-      navigate("/home");
+      console.log(values);
     } catch (error) {
       console.log(error);
       alert(error.response.data);
     }
   };
+
+  const [stepsGroup, setStepsGroup] = useState([
+    { name: "", deadline: "", itsFinished: "" },
+  ]);
+
+  const attachmentsGroup = { name: "", link: "", type: "" };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -47,12 +56,8 @@ export default function NewCard() {
         priority: "",
         jobDescription: "",
         observations: "",
-        attachmentName: "",
-        link: "",
-        type: "",
-        taskName: "",
-        deadline: "",
-        itsfinished: "",
+        steps: [stepsGroup],
+        attachments: [attachmentsGroup],
       },
       onSubmit,
     });
@@ -75,7 +80,7 @@ export default function NewCard() {
           <Typography className="subtitle" gutterBottom>
             Tasks
           </Typography>
-          {/* {TasksForm(handleChange)} */}
+          {TasksForm(stepsGroup, setStepsGroup)}
         </CardContent>
         <CardActions>
           <Button size="medium" color="success" onClick={handleSubmit}>
@@ -182,41 +187,137 @@ function SelectFields(priority, heardBack, handleChange) {
   );
 }
 
-// function TasksForm(itsFinished, handleItsFinishedChange) {
-//   return (
-//     <>
-//       <Box
-//         component="form"
-//         sx={{
-//           "& > :not(style)": { m: 1, width: "98%" },
-//         }}
-//         noValidate
-//         autoComplete="off"
-//       >
-//         <TextField
-//           id="name"
-//           label="task name"
-//           variant="standard"
-//           color="success"
-//         />
-//       </Box>
+function TasksForm(stepsGroup, setStepsGroup) {
+  let handleChange = (i, e) => {
+    let newStepsGroup = [...stepsGroup];
+    newStepsGroup[i][e.target.name] = e.target.value;
+    setStepsGroup(newStepsGroup);
+  };
 
-//       <Box sx={{ minWidth: 275, marginTop: 2 }}>
-//         <FormControl fullWidth>
-//           <InputLabel id="demo-simple-select-label">its finished?</InputLabel>
-//           <Select
-//             labelId="its finished?"
-//             id="itsfinished"
-//             value={itsFinished}
-//             label="its finished?"
-//             onChange={handleItsFinishedChange}
+  let addFormFields = () => {
+    setStepsGroup([...stepsGroup, { name: "", deadline: "", itsFinished: "" }]);
+  };
+
+  let removeFormFields = (i) => {
+    let newStepsGroup = [...stepsGroup];
+    newStepsGroup.splice(i, 1);
+    setStepsGroup(newStepsGroup);
+  };
+
+  let handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(stepsGroup));
+  };
+  return (
+    <ContainerTasks>
+      <form onSubmit={handleSubmit}>
+        {stepsGroup.map((element, index) => (
+          <div className="form-inline" key={index}>
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "98%" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="taskName"
+                label="task name"
+                variant="standard"
+                color="success"
+                type="text"
+                name="name"
+                value={element.name || ""}
+                onChange={(e) => handleChange(index, e)}
+              />
+              <TextField
+                id="taskDeadline"
+                label="deadline"
+                variant="standard"
+                color="success"
+                type="text"
+                name="deadline"
+                value={element.deadline || ""}
+                onChange={(e) => handleChange(index, e)}
+                fullWidth
+              />
+              <TextField
+                id="itsFinished"
+                label="its finished?"
+                variant="standard"
+                color="success"
+                type="text"
+                name="itsFinished"
+                value={element.itsFinished || ""}
+                onChange={(e) => handleChange(index, e)}
+              />
+              {index ? (
+                <button
+                  type="button"
+                  className="button remove"
+                  onClick={() => removeFormFields(index)}
+                >
+                  Remove
+                </button>
+              ) : null}
+            </Box>
+          </div>
+        ))}
+        <div className="button-section">
+          <button
+            className="button add"
+            type="button"
+            onClick={() => addFormFields()}
+          >
+            Add
+          </button>
+          <button className="button submit" type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </ContainerTasks>
+  );
+}
+
+// function TasksForm(name, deadline, itsFinished, handleChange) {
+//     return (
+//       <>
+//         <Box
+//           component="form"
+//           sx={{
+//             "& > :not(style)": { m: 1, width: "98%" },
+//           }}
+//           noValidate
+//           autoComplete="off"
+//         >
+//           <TextField
+//             id="name"
+//             label="task name"
+//             variant="standard"
 //             color="success"
-//           >
-//             <MenuItem value={"yes"}>yes</MenuItem>
-//             <MenuItem value={"no"}>no</MenuItem>
-//           </Select>
-//         </FormControl>
-//       </Box>
-//     </>
-//   );
-// }
+//             value={name}
+//             onChange={handleChange}
+//           />
+//         </Box>
+
+//         <Box sx={{ minWidth: 275, marginTop: 2 }}>
+//           <FormControl fullWidth>
+//             <InputLabel id="demo-simple-select-label">its finished?</InputLabel>
+//             <Select
+//               labelId="its finished?"
+//               id="itsfinished"
+//               value={itsFinished}
+//               label="its finished?"
+//               onChange={handleChange}
+//               color="success"
+//             >
+//               <MenuItem value={"yes"}>yes</MenuItem>
+//               <MenuItem value={"no"}>no</MenuItem>
+//             </Select>
+//           </FormControl>
+//         </Box>
+//       </>
+//     );
+//   }
