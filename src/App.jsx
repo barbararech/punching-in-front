@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HandlerProvider from "./contexts/contextHandler";
 import SignInPage from "./pages/SignInPage/index";
 import SignUpPage from "./pages/SignUpPage/index";
 import HomePage from "./pages/HomePage/index";
 import NewApplicationPage from "./pages/NewApplicationPage";
-// import ArchivePage from "./ArchivePage.jsx";
+import ArchivePage from "./pages/ArchivePage/index";
 // import TipsPage from "./TipsPage.jsx";
-// import refreshAxiosContext from "../contexts/refreshAxiosContext.jsx";
 
 function App() {
   return (
@@ -18,8 +16,8 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/newapplication" element={<NewApplicationPage/>} />
-          {/* <Route path="/archive" element={<ArchivePage />} />
-            <Route path="/tips" element={<TipsPage />} /> */}
+          <Route path="/archives" element={<ArchivePage />} />
+            {/* <Route path="/tips" element={<TipsPage />} /> */}
         </Routes>
       </BrowserRouter>
     </HandlerProvider>

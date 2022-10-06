@@ -19,6 +19,11 @@ export async function viewUnarchivedCards(config) {
   return response.data;
 }
 
+export async function viewArchivedCards(config) {
+  const response = await api.get("/applications/archived", config);
+  return response.data;
+}
+
 export async function archivedCard(id, itsArchived, config) {
   const response = await api.put(
     `/applications/${id}/edit`,
