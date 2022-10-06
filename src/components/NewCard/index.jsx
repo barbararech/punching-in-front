@@ -55,10 +55,13 @@ export default function NewCard() {
       const attachmentsData = { attachments: attachmentsWithId };
       await createAttachments(attachmentsData, config);
 
+      alert("New application created successfully!");
       navigate("/home");
     } catch (error) {
       console.log(error);
-      alert(error.response.data);
+      alert(
+        `New application wasn't created successfully! Error: ${error.message}`
+      );
     }
   };
 
@@ -105,7 +108,12 @@ export default function NewCard() {
           {AttachmentsForm(attachmentsGroup, setAttachmentsGroup)}
         </CardContent>
         <CardActions>
-          <Button size="large" color="success" className="submitButton" onClick={handleSubmit}>
+          <Button
+            size="large"
+            color="success"
+            className="submitButton"
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
         </CardActions>
