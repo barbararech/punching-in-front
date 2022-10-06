@@ -15,8 +15,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ArticleIcon from "@mui/icons-material/Article";
+import HomeIcon from "@mui/icons-material/Home";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -76,15 +76,23 @@ export default function TemporaryDrawer() {
 function RenderItemsMenu() {
   const itemsMenu = [
     "New Application",
+    "Home",
     "Archives",
     "My resumes",
     "Job application tips",
   ];
 
-  const linksMenu = ["/newapplication", "/archives", "/my-resumes", "/tips"];
+  const linksMenu = [
+    "/newapplication",
+    "/home",
+    "/archives",
+    "/my-resumes",
+    "/tips",
+  ];
 
   const iconsMenu = [
     <PostAddIcon />,
+    <HomeIcon />,
     <ArchiveIcon />,
     <ArticleIcon />,
     <TipsAndUpdatesIcon />,
