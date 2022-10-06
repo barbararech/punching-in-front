@@ -2,7 +2,6 @@ import React from "react";
 import { Main, Container, Message } from "./styles";
 import { ResponsiveAppBar } from "../../components/Navbar/index";
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { viewUnarchivedCards } from "../../services/api";
 import { HandlerContext } from "../../contexts/contextHandler";
 import BasicCard from "../../components/BasicCard";

@@ -22,8 +22,22 @@ export async function viewUnarchivedCards(config) {
 export async function archivedCard(id, itsArchived, config) {
   const response = await api.put(
     `/applications/${id}/edit`,
-    {itsArchived},
+    { itsArchived },
     config
   );
+  return response.data;
+}
+
+export async function createApplication(data, config) {
+  const response = await api.post("/applications/new", data, config);
+  return response.data;
+}
+
+export async function createSteps(data, config) {
+  const response = await api.post("/steps/new", data, config);
+  return response.data;
+}
+export async function createAttachments(data, config) {
+  const response = await api.post("/attachments/new", data, config);
   return response.data;
 }
