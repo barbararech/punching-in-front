@@ -18,6 +18,12 @@ export const Container = styled.section`
     font-family: "Poppins";
     margin-top: 30px;
   }
+
+  .submitButton {
+    background-color: rgba(36, 151, 86, 0.2);
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ContainerTasks = styled.section`
@@ -43,19 +49,19 @@ export const ContainerTasks = styled.section`
     background-color: Transparent;
   }
 
-  .addIcon{
+  .addIcon {
     color: #05995b;
-    font-size:20px;
-    cursor:pointer;
+    font-size: 20px;
+    cursor: pointer;
   }
 
-  .removeIcon{
+  .removeIcon {
     color: #df2a1d;
-    font-size:20px;
-    cursor:pointer;
+    font-size: 20px;
+    cursor: pointer;
   }
 
-  .paragraph{
+  .paragraph {
     display: flex;
     font-size: 16px;
     font-weight: 600;

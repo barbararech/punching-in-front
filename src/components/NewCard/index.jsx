@@ -105,7 +105,7 @@ export default function NewCard() {
           {AttachmentsForm(attachmentsGroup, setAttachmentsGroup)}
         </CardContent>
         <CardActions>
-          <Button size="large" color="success" onClick={handleSubmit}>
+          <Button size="large" color="success" className="submitButton" onClick={handleSubmit}>
             Submit
           </Button>
         </CardActions>
