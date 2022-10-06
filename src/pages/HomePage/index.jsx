@@ -7,9 +7,9 @@ import { HandlerContext } from "../../contexts/contextHandler";
 import BasicCard from "../../components/BasicCard";
 
 export default function HomePage() {
-  const { userData, setUserData } = useContext(HandlerContext);
+  const { userData } = useContext(HandlerContext);
   const [applications, setApplications] = useState([]);
-  const { refresh, setRefresh } = useContext(HandlerContext);
+  const { refresh } = useContext(HandlerContext);
 
   const config = {
     headers: {
@@ -31,7 +31,6 @@ export default function HomePage() {
   }, [refresh]);
 
   function RenderCards() {
-    console.log(applications);
     if (applications.length === 0) {
       return <Message> nothing here!</Message>;
     }

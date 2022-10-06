@@ -16,7 +16,6 @@ export default function SignInForm() {
 
     try {
       const promise = await signInUser(values);
-      console.log(promise);
       setUserData(promise);
 
       navigate("/home");

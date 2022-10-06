@@ -3,11 +3,8 @@ import {
   Card,
   Link,
   Collapse,
-  CardActions,
   CardContent,
-  Button,
   Typography,
-  Box,
   Divider,
   ListItemButton,
 } from "@mui/material";
@@ -20,21 +17,12 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArticleIcon from "@mui/icons-material/Article";
-import { archivedCardToggle } from "../../services/api";
-import { useState, useEffect, useContext } from "react";
+import { archivedCardToggle, deleteApplication } from "../../services/api";
+import { useContext } from "react";
 import { HandlerContext } from "../../contexts/contextHandler";
 import CircleIcon from "@mui/icons-material/Circle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
 
 export default function BasicCard({
   id,
@@ -70,14 +58,13 @@ export default function BasicCard({
 
   const deleteCard = async (id, config) => {
     try {
-      // await archivedCardToggle(id, itsArchived, config);
+      await deleteApplication(id, config);
       setRefresh(!refresh);
     } catch (error) {
       console.log(error);
       alert(error.message);
     }
   };
-
 
   return (
     <Container priority={priority} key={index}>
@@ -97,8 +84,15 @@ export default function BasicCard({
               <Typography className="subtitle">{roleName}</Typography>
 
               {open ? (
-                <>{actionsIcons(id, config, itsArchived, archiveCardToggle,
-                  deleteCard)}</>
+                <>
+                  {actionsIcons(
+                    id,
+                    config,
+                    itsArchived,
+                    archiveCardToggle,
+                    deleteCard
+                  )}
+                </>
               ) : (
                 <Typography component="div" className="priority">
                   {priority} priority
@@ -243,13 +237,7 @@ function RenderAttachments(attachments) {
   });
 }
 
-function actionsIcons(
-  id,
-  config,
-  itsArchived,
-  archiveCardToggle,
-  deleteCard
-) {
+function actionsIcons(id, config, itsArchived, archiveCardToggle, deleteCard) {
   return (
     <>
       {itsArchived ? (

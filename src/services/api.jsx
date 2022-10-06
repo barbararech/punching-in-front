@@ -46,3 +46,8 @@ export async function createAttachments(data, config) {
   const response = await api.post("/attachments/new", data, config);
   return response.data;
 }
+
+export async function deleteApplication(id, config) {
+  const response = await api.delete(`/applications/${id}/delete`, config);
+  return response.data;
+}
