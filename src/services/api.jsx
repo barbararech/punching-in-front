@@ -24,7 +24,7 @@ export async function viewArchivedCards(config) {
   return response.data;
 }
 
-export async function archivedCard(id, itsArchived, config) {
+export async function archivedCardToggle(id, itsArchived, config) {
   const response = await api.put(
     `/applications/${id}/edit`,
     { itsArchived },

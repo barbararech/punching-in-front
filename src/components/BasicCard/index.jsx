@@ -20,10 +20,12 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArticleIcon from "@mui/icons-material/Article";
-import { archivedCard } from "../../services/api";
+import { archivedCardToggle } from "../../services/api";
 import { useState, useEffect, useContext } from "react";
 import { HandlerContext } from "../../contexts/contextHandler";
 import CircleIcon from "@mui/icons-material/Circle";
+import DeleteIcon from "@mui/icons-material/Delete";
+import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
 const bull = (
   <Box
@@ -55,16 +57,27 @@ export default function BasicCard({
     setOpen(!open);
   };
 
-  const archiveCard = async (id, config) => {
+  const archiveCardToggle = async (id, config) => {
     try {
-      itsArchived = true;
-      await archivedCard(id, itsArchived, config);
+      itsArchived = !itsArchived;
+      await archivedCardToggle(id, itsArchived, config);
       setRefresh(!refresh);
     } catch (error) {
       console.log(error);
       alert(error.message);
     }
   };
+
+  const deleteCard = async (id, config) => {
+    try {
+      // await archivedCardToggle(id, itsArchived, config);
+      setRefresh(!refresh);
+    } catch (error) {
+      console.log(error);
+      alert(error.message);
+    }
+  };
+
 
   return (
     <Container priority={priority} key={index}>
@@ -84,15 +97,8 @@ export default function BasicCard({
               <Typography className="subtitle">{roleName}</Typography>
 
               {open ? (
-                <>
-                  <Link href={`/applications/${id}/edit`} underline="none">
-                    <BorderColorIcon className="editIcon" />
-                  </Link>
-                  <ArchiveIcon
-                    className="archiveIcon"
-                    onClick={() => archiveCard(id, config)}
-                  />
-                </>
+                <>{actionsIcons(id, config, itsArchived, archiveCardToggle,
+                  deleteCard)}</>
               ) : (
                 <Typography component="div" className="priority">
                   {priority} priority
@@ -197,11 +203,15 @@ function RenderTasks(steps) {
             </Typography>
 
             <Typography className="tasksLabel" component="div" gutterBottom>
-              <Typography className="tasksTrack" component="div" >
+              <Typography className="tasksTrack" component="div">
                 <CircleIcon className="circleIcon" />
                 {itsFinished ? "On track!" : "Not done yet!"}
               </Typography>
-              <Typography className="tasksDeadline" component="div" gutterBottom>
+              <Typography
+                className="tasksDeadline"
+                component="div"
+                gutterBottom
+              >
                 {deadline}
               </Typography>
             </Typography>
@@ -231,4 +241,39 @@ function RenderAttachments(attachments) {
       </>
     );
   });
+}
+
+function actionsIcons(
+  id,
+  config,
+  itsArchived,
+  archiveCardToggle,
+  deleteCard
+) {
+  return (
+    <>
+      {itsArchived ? (
+        <>
+          <DeleteIcon
+            className="editIcon"
+            onClick={() => deleteCard(id, config)}
+          />
+          <UnarchiveIcon
+            className="archiveIcon"
+            onClick={() => archiveCardToggle(id, config)}
+          />
+        </>
+      ) : (
+        <>
+          <Link href={`/applications/${id}/edit`} underline="none">
+            <BorderColorIcon className="editIcon" />
+          </Link>
+          <ArchiveIcon
+            className="archiveIcon"
+            onClick={() => archiveCardToggle(id, config)}
+          />
+        </>
+      )}
+    </>
+  );
 }
