@@ -12,11 +12,9 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  Grid,
 } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Container, ContainerTasks } from "./styles";
 import { useFormik } from "formik";
 
@@ -24,6 +22,7 @@ export default function NewCard() {
   const onSubmit = async (values) => {
     try {
       values.steps = stepsGroup;
+      values.attachments = attachmentsGroup;
       alert(JSON.stringify(values, null));
       //   const promise = await signInUser(values);
       console.log(values);
@@ -37,7 +36,9 @@ export default function NewCard() {
     { name: "", deadline: "", itsFinished: "" },
   ]);
 
-  const attachmentsGroup = { name: "", link: "", type: "" };
+  const [attachmentsGroup, setAttachmentsGroup] = useState([
+    { name: "", link: "", type: "" },
+  ]);
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -70,6 +71,7 @@ export default function NewCard() {
           )}
           {SelectFields(values.priority, values.heardBack, handleChange)}
           {TasksForm(stepsGroup, setStepsGroup)}
+          {AttachmentsForm(attachmentsGroup, setAttachmentsGroup)}
         </CardContent>
         <CardActions>
           <Button size="medium" color="success" onClick={handleSubmit}>
@@ -209,14 +211,14 @@ function TasksForm(stepsGroup, setStepsGroup) {
         {stepsGroup.map((element, index) => (
           <>
             <Typography className="paragraph" gutterBottom>
-              Task {index+1}
+              Task {index + 1}
               {index ? (
                 <button
                   type="button"
                   className="button remove"
                   onClick={() => removeFormFields(index)}
                 >
-                   <RemoveCircleOutlineIcon className="removeIcon" />
+                  <RemoveCircleOutlineIcon className="removeIcon" />
                 </button>
               ) : null}
             </Typography>
@@ -259,6 +261,105 @@ function TasksForm(stepsGroup, setStepsGroup) {
                 >
                   <MenuItem value={true}>yes</MenuItem>
                   <MenuItem value={false}>no</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          </>
+        ))}
+      </form>
+    </ContainerTasks>
+  );
+}
+
+function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
+  let handleChange = (i, e) => {
+    let newAttachmentsGroup = [...attachmentsGroup];
+    newAttachmentsGroup[i][e.target.name] = e.target.value;
+    setAttachmentsGroup(newAttachmentsGroup);
+  };
+
+  let addFormFields = () => {
+    setAttachmentsGroup([
+      ...attachmentsGroup,
+      { name: "", link: "", type: "" },
+    ]);
+  };
+
+  let removeFormFields = (i) => {
+    let newAttachmentsGroup = [...attachmentsGroup];
+    newAttachmentsGroup.splice(i, 1);
+    setAttachmentsGroup(newAttachmentsGroup);
+  };
+
+  return (
+    <ContainerTasks>
+      <Typography className="subtitle" gutterBottom>
+        Attachments
+        <button
+          className="buttonAdd"
+          type="button"
+          onClick={() => addFormFields()}
+        >
+          <AddCircleOutlineIcon className="addIcon" />
+        </button>
+      </Typography>
+      <form>
+        {attachmentsGroup.map((element, index) => (
+          <>
+            <Typography className="paragraph" gutterBottom>
+              Attachment {index + 1}
+              {index ? (
+                <button
+                  type="button"
+                  className="button remove"
+                  onClick={() => removeFormFields(index)}
+                >
+                  <RemoveCircleOutlineIcon className="removeIcon" />
+                </button>
+              ) : null}
+            </Typography>
+
+            <div className="form-inline" key={index}>
+              <TextField
+                id="attachmentName"
+                label="attachment name"
+                variant="standard"
+                color="success"
+                type="text"
+                name="name"
+                value={element.name || ""}
+                onChange={(e) => handleChange(index, e)}
+                fullWidth
+              />
+              <TextField
+                id="attachmentLink"
+                label="attachment link"
+                variant="standard"
+                color="success"
+                type="text"
+                name="link"
+                value={element.link || ""}
+                onChange={(e) => handleChange(index, e)}
+                fullWidth
+              />
+
+              <FormControl fullWidth className="selectInputTasks">
+                <InputLabel id="type">type</InputLabel>
+                <Select
+                  labelId="type"
+                  id="type"
+                  name="type"
+                  value={element.type || ""}
+                  label="its Finished?"
+                  onChange={(e) => handleChange(index, e)}
+                  color="success"
+                  fullWidth
+                >
+                  <MenuItem value={"resume"}>resume</MenuItem>
+                  <MenuItem value={"coverLetter"}>cover letter</MenuItem>
+                  <MenuItem value={"portifolio"}>portifolio</MenuItem>
+                  <MenuItem value={"testAnswers"}>test answers</MenuItem>
+                  <MenuItem value={"others"}>others</MenuItem>
                 </Select>
               </FormControl>
             </div>
