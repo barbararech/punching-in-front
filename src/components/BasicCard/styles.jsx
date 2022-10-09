@@ -131,6 +131,10 @@ export const Container = styled.section`
   .articleIcon {
     margin-right: 10px;
   }
+
+  @media (max-width: 1140px) {
+    padding: 20px 0px;
+  }
 `;
 
 const handleColorType = (priority) => {

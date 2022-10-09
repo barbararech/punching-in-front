@@ -24,6 +24,10 @@ export const Container = styled.section`
     margin-left: 10px;
     margin-bottom: 10px;
   }
+
+  @media (max-width: 1140px) {
+    padding: 40px 0;
+  }
 `;
 
 export const ContainerTasks = styled.section`

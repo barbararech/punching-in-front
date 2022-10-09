@@ -2,7 +2,7 @@ import React from "react";
 import { ResponsiveAppBar } from "../../components/Navbar";
 import { Main, Container, Message} from "../HomePage/styles";
 
-export default function TipsPage() {
+export default function MyResumesPage() {
   return (
     <Main>
       <Container>

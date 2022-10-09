@@ -6,12 +6,14 @@ import TemporaryDrawer from "../Menu";
 import { HandlerContext } from "../../contexts/contextHandler";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Container } from "./styles";
 
 export const ResponsiveAppBar = () => {
   const { logout } = useContext(HandlerContext);
   const navigate = useNavigate();
 
   return (
+    <Container>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
@@ -23,7 +25,7 @@ export const ResponsiveAppBar = () => {
 
           <Typography component="div" sx={{ flexGrow: 1, mt: 1 }}>
             <Link to="/home">
-              <img src={logo} alt="logo" width={300} edge="start" />
+              <img src={logo} alt="logo" className="logo" edge="start" />
             </Link>
           </Typography>
           <Button
@@ -37,5 +39,6 @@ export const ResponsiveAppBar = () => {
         </Toolbar>
       </AppBar>
     </Box>
+    </Container>
   );
 };
