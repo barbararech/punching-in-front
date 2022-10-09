@@ -55,6 +55,7 @@ function TextFields(
         color="success"
         value={companyName}
         onChange={handleChange}
+        required
       />
       <TextField
         id="roleName"
@@ -63,6 +64,7 @@ function TextFields(
         color="success"
         value={roleName}
         onChange={handleChange}
+        required
       />
       <TextField
         id="jobDescription"
@@ -71,6 +73,8 @@ function TextFields(
         color="success"
         value={jobDescription}
         onChange={handleChange}
+        required
+        helperText="Enter a valid url"
       />
       <TextField
         id="observations"
@@ -98,6 +102,7 @@ function SelectFields(priority, heardBack, handleChange) {
             label="priority"
             onChange={handleChange}
             color="success"
+            required
           >
             <MenuItem value={"high"}>high</MenuItem>
             <MenuItem value={"medium"}>medium</MenuItem>
@@ -116,6 +121,7 @@ function SelectFields(priority, heardBack, handleChange) {
             label="heard Back?"
             onChange={handleChange}
             color="success"
+            required
           >
             <MenuItem value={true}>yes</MenuItem>
             <MenuItem value={false}>no</MenuItem>

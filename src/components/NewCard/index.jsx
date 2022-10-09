@@ -26,7 +26,7 @@ export default function NewCard(
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
           <Typography className="title" gutterBottom>
-           {editApplication ? "Edit Application" :"New Application"}
+            {editApplication ? "Edit Application" : "New Application"}
           </Typography>
           {ApplicationForm(
             values.companyName,

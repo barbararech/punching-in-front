@@ -23,7 +23,6 @@ export default function NewApplicationPage() {
   };
 
   const onSubmit = async (values) => {
-    console.log(attachmentsGroup)
     try {
       const applicationData = {
         companyName: values.companyName,
@@ -33,14 +32,12 @@ export default function NewApplicationPage() {
         priority: values.priority,
         roleName: values.roleName,
       };
-      console.log(values);
       const promise = await createApplication(applicationData, config);
 
       const stepsWithId = stepsGroup.map((el) => {
         return { ...el, applicationId: promise.id };
       });
       const stepsData = { steps: stepsWithId };
-      console.log(stepsData)
       await createSteps(stepsData, config);
 
       const attachmentsWithId = attachmentsGroup.map((el) => ({
@@ -48,16 +45,18 @@ export default function NewApplicationPage() {
         applicationId: promise.id,
       }));
       const attachmentsData = { attachments: attachmentsWithId };
-      console.log(attachmentsData)
       await createAttachments(attachmentsData, config);
 
       alert("New application created successfully!");
       navigate("/home");
     } catch (error) {
-      console.log(error);
-      alert(
-        `New application wasn't created successfully! Error: ${error.message}`
-      );
+      if (error.code === "ERR_BAD_REQUEST") {
+        alert(`Insert the information correctly!`);
+      } else {
+        alert(
+          `New application wasn't created successfully! Error: ${error.message}`
+        );
+      }
     }
   };
 

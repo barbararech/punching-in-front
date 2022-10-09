@@ -67,6 +67,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
                 value={element.name || ""}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
+                required
               />
               <TextField
                 id="taskDeadline"
@@ -78,6 +79,8 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
                 value={element.deadline || ""}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
+                required
+                helperText="Enter a date in the format 'DD/MM/YYYY'"
               />
 
               <FormControl fullWidth className="selectInputTasks">
@@ -91,6 +94,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
                   onChange={(e) => handleChange(index, e)}
                   color="success"
                   fullWidth
+                  required
                 >
                   <MenuItem value={true}>yes</MenuItem>
                   <MenuItem value={false}>no</MenuItem>

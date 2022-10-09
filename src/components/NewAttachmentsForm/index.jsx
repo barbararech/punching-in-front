@@ -43,7 +43,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
           <AddCircleOutlineIcon className="addIcon" />
         </button>
       </Typography>
-      <form>
+      <form >
         {attachmentsGroup.map((element, index) => (
           <>
             <Typography className="paragraph" gutterBottom>
@@ -70,6 +70,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                 value={element.name || ""}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
+                required
               />
               <TextField
                 id="attachmentLink"
@@ -81,6 +82,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                 value={element.link || ""}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
+                required
               />
 
               <FormControl fullWidth className="selectInputTasks">
@@ -94,6 +96,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                   onChange={(e) => handleChange(index, e)}
                   color="success"
                   fullWidth
+                  required
                 >
                   <MenuItem value={"resume"}>resume</MenuItem>
                   <MenuItem value={"coverletter"}>cover letter</MenuItem>
