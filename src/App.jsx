@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage/index";
 import NewApplicationPage from "./pages/NewApplicationPage";
 import ArchivePage from "./pages/ArchivePage/index";
 import EditApplicationPage from "./pages/EditApplicationPage/index";
-// import TipsPage from "./TipsPage.jsx";
+import TipsPage from "./pages/TipsPage/index";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/newapplication" element={<NewApplicationPage/>} />
           <Route path="/archives" element={<ArchivePage />} />
           <Route path="/applications/:id/edit" element={<EditApplicationPage />} />
-            {/* <Route path="/tips" element={<TipsPage />} /> */}
+            <Route path="/tips" element={<TipsPage />} />
         </Routes>
       </BrowserRouter>
     </HandlerProvider>
