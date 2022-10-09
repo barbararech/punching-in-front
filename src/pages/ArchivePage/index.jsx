@@ -22,6 +22,7 @@ export default function ArchivePage() {
       try {
         const response = await viewArchivedCards(config);
         setApplications(response.applications);
+        
       } catch (error) {
         console.log(error);
         alert(error.message);

@@ -83,7 +83,7 @@ export default function EditApplicationPage() {
       console.log(attachmentsData);
       await updateAttachments(attachmentsData, config);
 
-      alert("New application created successfully!");
+      alert("Application updated successfully!");
       navigate("/home");
     } catch (error) {
       console.log(error);

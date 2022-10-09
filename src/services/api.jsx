@@ -53,7 +53,8 @@ export async function deleteApplication(id, config) {
 }
 
 export async function viewApplication(id, config) {
-  const response = await api.get(`/applications/${id}`, config);
+  console.log(id)
+  const response = await api.get(`/applications/${id}/view`, config);
   return response.data;
 }
 
