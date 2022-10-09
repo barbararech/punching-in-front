@@ -17,7 +17,7 @@ export default function SignUpForm() {
       navigate("/");
     } catch (error) {
       console.log(error);
-      alert(error.response.data);
+      alert(error.message);
       setEnable(true);
     }
   };
