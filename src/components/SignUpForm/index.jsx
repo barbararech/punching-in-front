@@ -1,5 +1,5 @@
 import { Container, Form } from "./styles";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { createUser } from "../../services/api";

@@ -96,7 +96,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                   fullWidth
                 >
                   <MenuItem value={"resume"}>resume</MenuItem>
-                  <MenuItem value={"coverLetter"}>cover letter</MenuItem>
+                  <MenuItem value={"coverletter"}>cover letter</MenuItem>
                   <MenuItem value={"portifolio"}>portifolio</MenuItem>
                   <MenuItem value={"testAnswers"}>test answers</MenuItem>
                   <MenuItem value={"others"}>others</MenuItem>

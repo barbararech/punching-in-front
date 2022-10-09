@@ -4,7 +4,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import logo from "../../assets/images/logo.png";
 import TemporaryDrawer from "../Menu";
 import { HandlerContext } from "../../contexts/contextHandler";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const ResponsiveAppBar = () => {
