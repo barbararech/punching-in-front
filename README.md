@@ -19,6 +19,7 @@ An app for you to manage yours applications to job offfers!
   - Axios
   - Styled-components
   - JWT
+  - Cypress
 
 ## 🏁 Running the application
 
