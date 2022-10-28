@@ -12,7 +12,7 @@
 
 ##  :clipboard: Description
 
-An app for you to manage yours applications to job offfers!
+An app for you to manage yours applications to job offers!
 
 ## :computer: Technologies
   - ReactJS
