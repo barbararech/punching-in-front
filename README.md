@@ -53,7 +53,7 @@ To launches the test runner in the interactive watch mode, run
 npm test
 ```
 
-:stop_sign: Don't forget to set the **environment variables** and to repeat the steps above with the **back-end repository** to fully test the project!
+:stop_sign: Don't forget to set the **environment variables** and to repeat the steps above with the [**back-end repository**](https://github.com/barbararech/punching-in-back) to fully test the project!
 
 
 
