@@ -1,30 +1,22 @@
-import * as React from "react";
-import {
-  Card,
-  Link,
-  Collapse,
-  CardContent,
-  Typography,
-  Divider,
-  ListItemButton,
-} from "@mui/material";
-import { Container } from "./styles";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import ArticleIcon from "@mui/icons-material/Article";
-import { archivedCardToggle, deleteApplication } from "../../services/api";
-import { useContext } from "react";
-import { HandlerContext } from "../../contexts/contextHandler";
-import CircleIcon from "@mui/icons-material/Circle";
-import DeleteIcon from "@mui/icons-material/Delete";
-import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import * as React from 'react';
+import { Card, Link, Collapse, CardContent, Typography, Divider, ListItemButton } from '@mui/material';
+import { Container } from './styles';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ArticleIcon from '@mui/icons-material/Article';
+import { archivedCardToggle, deleteApplication } from '../../services/api';
+import { useContext } from 'react';
+import { HandlerContext } from '../../contexts/contextHandler';
+import CircleIcon from '@mui/icons-material/Circle';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UnarchiveIcon from '@mui/icons-material/Unarchive';
 
-export default function BasicCard({
+export default function ApplicationCard({
   id,
   companyName,
   roleName,
@@ -70,29 +62,14 @@ export default function BasicCard({
     <Container priority={priority} key={index}>
       <Card sx={{ minWidth: 175 }}>
         <CardContent>
-          <ListItemButton
-            onClick={() => handleClick()}
-            sx={{ position: "relative" }}
-          >
-            {open ? (
-              <ExpandLess className="expand" />
-            ) : (
-              <ExpandMore className="expand" />
-            )}
+          <ListItemButton onClick={() => handleClick()} sx={{ position: 'relative' }}>
+            {open ? <ExpandLess className="expand" /> : <ExpandMore className="expand" />}
             <Typography component="div">
               <Typography className="title">{companyName}</Typography>
               <Typography className="subtitle">{roleName}</Typography>
 
               {open ? (
-                <>
-                  {actionsIcons(
-                    id,
-                    config,
-                    itsArchived,
-                    archiveCardToggle,
-                    deleteCard
-                  )}
-                </>
+                <>{actionsIcons(id, config, itsArchived, archiveCardToggle, deleteCard)}</>
               ) : (
                 <Typography component="div" className="priority">
                   {priority} priority
@@ -146,12 +123,8 @@ export default function BasicCard({
                 <Typography className="subtitle" gutterBottom>
                   Heard back?
                 </Typography>
-                <Typography
-                  className="heardBack"
-                  color={heardBack ? "#029866" : "error"}
-                  gutterBottom
-                >
-                  {heardBack ? "Yes" : "No"}
+                <Typography className="heardBack" color={heardBack ? '#029866' : 'error'} gutterBottom>
+                  {heardBack ? 'Yes' : 'No'}
                 </Typography>
               </Typography>
             </Typography>
@@ -167,7 +140,7 @@ export default function BasicCard({
             <Divider className="divider" />
             <Typography component="div" className="observations">
               <Typography component="div" className="attachments">
-                {observations ? observations : "nothing here!"}
+                {observations ? observations : 'nothing here!'}
               </Typography>
             </Typography>
           </Collapse>
@@ -181,13 +154,9 @@ function RenderTasks(steps) {
   return steps.map(({ name, deadline, itsFinished }) => {
     return (
       <>
-        <Typography
-          component="div"
-          className="contentTasks"
-          color={itsFinished ? "#029866" : "	#black"}
-        >
+        <Typography component="div" className="contentTasks" color={itsFinished ? '#029866' : '	#black'}>
           <Typography component="div" className="subcontent">
-            <Typography className="task" gutterBottom component={"span"}>
+            <Typography className="task" gutterBottom component={'span'}>
               {itsFinished ? (
                 <CheckCircleIcon className="checkIcon" />
               ) : (
@@ -199,13 +168,9 @@ function RenderTasks(steps) {
             <Typography className="tasksLabel" component="div" gutterBottom>
               <Typography className="tasksTrack" component="div">
                 <CircleIcon className="circleIcon" />
-                {itsFinished ? "On track!" : "Not done yet!"}
+                {itsFinished ? 'On track!' : 'Not done yet!'}
               </Typography>
-              <Typography
-                className="tasksDeadline"
-                component="div"
-                gutterBottom
-              >
+              <Typography className="tasksDeadline" component="div" gutterBottom>
                 {deadline}
               </Typography>
             </Typography>
@@ -242,24 +207,15 @@ function actionsIcons(id, config, itsArchived, archiveCardToggle, deleteCard) {
     <>
       {itsArchived ? (
         <>
-          <DeleteIcon
-            className="editIcon"
-            onClick={() => deleteCard(id, config)}
-          />
-          <UnarchiveIcon
-            className="archiveIcon"
-            onClick={() => archiveCardToggle(id, config)}
-          />
+          <DeleteIcon className="editIcon" onClick={() => deleteCard(id, config)} />
+          <UnarchiveIcon className="archiveIcon" onClick={() => archiveCardToggle(id, config)} />
         </>
       ) : (
         <>
           <Link href={`/applications/${id}/edit`} underline="none">
             <BorderColorIcon className="editIcon" />
           </Link>
-          <ArchiveIcon
-            className="archiveIcon"
-            onClick={() => archiveCardToggle(id, config)}
-          />
+          <ArchiveIcon className="archiveIcon" onClick={() => archiveCardToggle(id, config)} />
         </>
       )}
     </>

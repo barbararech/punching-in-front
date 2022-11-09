@@ -1,9 +1,9 @@
-import { Container, Form } from "./styles";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import { createUser } from "../../services/api";
-import { signUpSchema } from "../../schemas/index";
+import { Container, Form } from './styles';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { createUser } from '../../services/api';
+import { signUpSchema } from '../../schemas/index';
 
 export default function SignUpForm() {
   const [enable, setEnable] = useState(true);
@@ -14,7 +14,7 @@ export default function SignUpForm() {
 
     try {
       await createUser(values);
-      navigate("/");
+      navigate('/');
     } catch (error) {
       console.log(error);
       alert(error.message);
@@ -22,16 +22,15 @@ export default function SignUpForm() {
     }
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-        username: "",
-      },
-      validationSchema: signUpSchema,
-      onSubmit,
-    });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      username: '',
+    },
+    validationSchema: signUpSchema,
+    onSubmit,
+  });
   return (
     <Container>
       <Form onSubmit={handleSubmit} autoComplete="off" enable={enable}>
@@ -48,15 +47,9 @@ export default function SignUpForm() {
           name="username"
           type="username"
           placeholder="username"
-          className={
-            errors.username && touched.username
-              ? " form__field input-error"
-              : "form__field"
-          }
+          className={errors.username && touched.username ? ' form__field input-error' : 'form__field'}
         />
-        {errors.username && touched.username && (
-          <p className="error">{errors.username}</p>
-        )}
+        {errors.username && touched.username && <p className="error">{errors.username}</p>}
 
         <label htmlFor="email" className="form__label">
           Email
@@ -69,15 +62,9 @@ export default function SignUpForm() {
           name="email"
           type="email"
           placeholder="e-mail"
-          className={
-            errors.email && touched.email
-              ? " form__field input-error"
-              : "form__field"
-          }
+          className={errors.email && touched.email ? ' form__field input-error' : 'form__field'}
         />
-        {errors.email && touched.email && (
-          <p className="error">{errors.email}</p>
-        )}
+        {errors.email && touched.email && <p className="error">{errors.email}</p>}
 
         <label htmlFor="password" className="form__label">
           Password
@@ -90,15 +77,9 @@ export default function SignUpForm() {
           name="password"
           type="password"
           placeholder="password"
-          className={
-            errors.password && touched.password
-              ? " form__field input-error"
-              : "form__field"
-          }
+          className={errors.password && touched.password ? ' form__field input-error' : 'form__field'}
         />
-        {errors.password && touched.password && (
-          <p className="error">{errors.password}</p>
-        )}
+        {errors.password && touched.password && <p className="error">{errors.password}</p>}
 
         <div className="submitButton">
           <button type="submit">Sign Up</button>

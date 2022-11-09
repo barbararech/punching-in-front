@@ -1,15 +1,8 @@
-import * as React from "react";
-import {
-  Typography,
-  TextField,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-} from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { ContainerTasks } from "../NewCard/styles";
+import * as React from 'react';
+import { Typography, TextField, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { ContainerTasks } from '../NewApplication/styles';
 
 export default function TasksForm(stepsGroup, setStepsGroup) {
   let handleChange = (i, e) => {
@@ -19,7 +12,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
   };
 
   let addFormFields = () => {
-    setStepsGroup([...stepsGroup, { name: "", deadline: "", itsFinished: "" }]);
+    setStepsGroup([...stepsGroup, { name: '', deadline: '', itsFinished: '' }]);
   };
 
   let removeFormFields = (i) => {
@@ -32,11 +25,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
     <ContainerTasks>
       <Typography className="subtitle" gutterBottom>
         Tasks
-        <button
-          className="buttonAdd"
-          type="button"
-          onClick={() => addFormFields()}
-        >
+        <button className="buttonAdd" type="button" onClick={() => addFormFields()}>
           <AddCircleOutlineIcon className="addIcon" />
         </button>
       </Typography>
@@ -46,11 +35,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
             <Typography className="paragraph" gutterBottom>
               Task {index + 1}
               {index ? (
-                <button
-                  type="button"
-                  className="button remove"
-                  onClick={() => removeFormFields(index)}
-                >
+                <button type="button" className="button remove" onClick={() => removeFormFields(index)}>
                   <RemoveCircleOutlineIcon className="removeIcon" />
                 </button>
               ) : null}
@@ -64,7 +49,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
                 color="success"
                 type="text"
                 name="name"
-                value={element.name || ""}
+                value={element.name || ''}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
                 required
@@ -76,7 +61,7 @@ export default function TasksForm(stepsGroup, setStepsGroup) {
                 color="success"
                 type="text"
                 name="deadline"
-                value={element.deadline || ""}
+                value={element.deadline || ''}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
                 required

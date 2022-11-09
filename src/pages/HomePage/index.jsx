@@ -1,10 +1,10 @@
-import React from "react";
-import { Main, Container, Message } from "./styles";
-import { ResponsiveAppBar } from "../../components/Navbar/index";
-import { useState, useEffect, useContext } from "react";
-import { viewUnarchivedCards } from "../../services/api";
-import { HandlerContext } from "../../contexts/contextHandler";
-import BasicCard from "../../components/BasicCard";
+import React from 'react';
+import { Main, Container, Message } from './styles';
+import { ResponsiveAppBar } from '../../components/Navbar/index';
+import { useState, useEffect, useContext } from 'react';
+import { viewUnarchivedCards } from '../../services/api';
+import { HandlerContext } from '../../contexts/contextHandler';
+import ApplicationCard from '../../components/ApplicationCard';
 
 export default function HomePage() {
   const { userData } = useContext(HandlerContext);
@@ -50,7 +50,7 @@ export default function HomePage() {
         index,
       }) => {
         return (
-          <BasicCard
+          <ApplicationCard
             id={id}
             companyName={companyName}
             roleName={roleName}

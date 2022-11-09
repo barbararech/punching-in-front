@@ -1,16 +1,12 @@
-import React from "react";
-import { Main, Container } from "../HomePage/styles";
-import { ResponsiveAppBar } from "../../components/Navbar/index";
-import NewCard from "../../components/NewCard/index";
-import { useState, useContext } from "react";
-import { useFormik } from "formik";
-import {
-  createApplication,
-  createSteps,
-  createAttachments,
-} from "../../services/api";
-import { HandlerContext } from "../../contexts/contextHandler";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { Main, Container } from '../HomePage/styles';
+import { ResponsiveAppBar } from '../../components/Navbar/index';
+import NewApplication from '../../components/NewApplication/index';
+import { useState, useContext } from 'react';
+import { useFormik } from 'formik';
+import { createApplication, createSteps, createAttachments } from '../../services/api';
+import { HandlerContext } from '../../contexts/contextHandler';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewApplicationPage() {
   const navigate = useNavigate();
@@ -47,47 +43,40 @@ export default function NewApplicationPage() {
       const attachmentsData = { attachments: attachmentsWithId };
       await createAttachments(attachmentsData, config);
 
-      alert("New application created successfully!");
-      navigate("/home");
+      alert('New application created successfully!');
+      navigate('/home');
     } catch (error) {
-      if (error.code === "ERR_BAD_REQUEST") {
+      if (error.code === 'ERR_BAD_REQUEST') {
         alert(`Insert the information correctly!`);
       } else {
-        alert(
-          `New application wasn't created successfully! Error: ${error.message}`
-        );
+        alert(`New application wasn't created successfully! Error: ${error.message}`);
       }
     }
   };
 
-  const [stepsGroup, setStepsGroup] = useState([
-    { name: "", deadline: "", itsFinished: "" },
-  ]);
+  const [stepsGroup, setStepsGroup] = useState([{ name: '', deadline: '', itsFinished: '' }]);
 
-  const [attachmentsGroup, setAttachmentsGroup] = useState([
-    { name: "", link: "", type: "" },
-  ]);
+  const [attachmentsGroup, setAttachmentsGroup] = useState([{ name: '', link: '', type: '' }]);
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        companyName: "",
-        roleName: "",
-        heardBack: "",
-        priority: "",
-        jobDescription: "",
-        observations: "",
-        steps: [stepsGroup],
-        attachments: [attachmentsGroup],
-      },
-      onSubmit,
-    });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      companyName: '',
+      roleName: '',
+      heardBack: '',
+      priority: '',
+      jobDescription: '',
+      observations: '',
+      steps: [stepsGroup],
+      attachments: [attachmentsGroup],
+    },
+    onSubmit,
+  });
 
   return (
     <Main>
       <Container>
         <ResponsiveAppBar />
-        {NewCard(
+        {NewApplication(
           values,
           handleChange,
           handleSubmit,

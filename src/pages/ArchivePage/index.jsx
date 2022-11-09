@@ -1,10 +1,10 @@
-import React from "react";
-import { Main, Container, Message } from "../HomePage/styles";
-import { ResponsiveAppBar } from "../../components/Navbar/index";
-import { useState, useEffect, useContext } from "react";
-import { viewArchivedCards } from "../../services/api";
-import { HandlerContext } from "../../contexts/contextHandler";
-import BasicCard from "../../components/BasicCard";
+import React from 'react';
+import { Main, Container, Message } from '../HomePage/styles';
+import { ResponsiveAppBar } from '../../components/Navbar/index';
+import { useState, useEffect, useContext } from 'react';
+import { viewArchivedCards } from '../../services/api';
+import { HandlerContext } from '../../contexts/contextHandler';
+import BasicCard from '../../components/ApplicationCard';
 
 export default function ArchivePage() {
   const { userData } = useContext(HandlerContext);
@@ -22,7 +22,6 @@ export default function ArchivePage() {
       try {
         const response = await viewArchivedCards(config);
         setApplications(response.applications);
-        
       } catch (error) {
         console.log(error);
         alert(error.message);

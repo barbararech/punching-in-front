@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.section`
   padding-left: 10%;
@@ -24,13 +24,13 @@ export const Container = styled.section`
   .title {
     font-size: 20px;
     font-weight: 600;
-    font-family: "Poppins";
+    font-family: 'Poppins';
   }
 
   .subtitle {
     font-size: 16px;
     font-weight: 400;
-    font-family: "Poppins";
+    font-family: 'Poppins';
     color: #828282;
     display: flex;
     align-items: center;
@@ -60,37 +60,36 @@ export const Container = styled.section`
     margin-left: 40px;
   }
 
-  .circleIcon{
-      font-size:10px;
-      margin-right:5px;
+  .circleIcon {
+    font-size: 10px;
+    margin-right: 5px;
   }
 
   .task {
     display: flex;
     align-items: center;
-    
   }
 
   .tasksLabel {
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     font-size: 16px;
-    width:113px;
+    width: 113px;
 
     margin-right: 14%;
   }
 
   .tasksDeadline {
     font-size: 12px;
-    color:gray;
+    color: gray;
   }
 
   .openInNewIcon {
     margin-left: 3px;
-    font-size:20px;
-    padding-bottom:10px;
+    font-size: 20px;
+    padding-bottom: 10px;
   }
 
   .checkIcon {
@@ -139,22 +138,22 @@ export const Container = styled.section`
 
 const handleColorType = (priority) => {
   switch (priority) {
-    case "high":
-      return "#eb5757";
-    case "medium":
-      return "#219653";
+    case 'high':
+      return '#eb5757';
+    case 'medium':
+      return '#219653';
     default:
-      return "#2F80ED";
+      return '#2F80ED';
   }
 };
 
 const handleBackgroundType = (priority) => {
   switch (priority) {
-    case "high":
-      return "rgba(235, 87, 87, 0.2)";
-    case "medium":
-      return "rgba(36, 151, 86, 0.2);";
+    case 'high':
+      return 'rgba(235, 87, 87, 0.2)';
+    case 'medium':
+      return 'rgba(36, 151, 86, 0.2);';
     default:
-      return " rgba(47, 128, 237, 0.25);";
+      return ' rgba(47, 128, 237, 0.25);';
   }
 };

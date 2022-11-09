@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.section`
   padding-left: 10%;
@@ -8,14 +8,14 @@ export const Container = styled.section`
   .title {
     font-size: 20px;
     font-weight: 600;
-    font-family: "Poppins";
+    font-family: 'Poppins';
   }
 
   .subtitle {
     display: flex;
     font-size: 18px;
     font-weight: 600;
-    font-family: "Poppins";
+    font-family: 'Poppins';
     margin-top: 30px;
   }
 
@@ -69,7 +69,7 @@ export const ContainerTasks = styled.section`
     display: flex;
     font-size: 16px;
     font-weight: 600;
-    font-family: "Poppins";
+    font-family: 'Poppins';
     margin-top: 10px;
   }
 `;

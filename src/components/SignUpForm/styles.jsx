@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.section`
   display: flex;
@@ -14,7 +14,7 @@ export const Form = styled.form`
   gap: 0.7rem;
   position: fixed;
   right: 2%;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
   .form__field {
     font-family: inherit;
@@ -82,8 +82,8 @@ export const Form = styled.form`
     font-size: 18px;
     width: 80%;
     cursor: pointer;
-    opacity: ${(props) => (props.enable ? "1" : "0.7")};
-    pointer-events: ${(props) => (props.enable ? "auto" : "none")};
+    opacity: ${(props) => (props.enable ? '1' : '0.7')};
+    pointer-events: ${(props) => (props.enable ? 'auto' : 'none')};
   }
 
   .submitButton {

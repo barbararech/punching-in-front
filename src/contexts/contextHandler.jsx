@@ -1,15 +1,15 @@
-import React, { createContext, useState } from "react";
-import { useLocalStorage } from "../utils/hooks";
+import React, { createContext, useState } from 'react';
+import { useLocalStorage } from '../utils/hooks';
 
 export const HandlerContext = createContext(null);
 
 function HandlerProvider({ children }) {
   const [refresh, setRefresh] = useState(false);
-  const [userData, setUserData] = useLocalStorage("punchingInUserData", "");
+  const [userData, setUserData] = useLocalStorage('punchingInUserData', '');
 
   const logout = () => {
-    setUserData("empty");
-    localStorage.removeItem("punchingInUserData");
+    setUserData('empty');
+    localStorage.removeItem('punchingInUserData');
   };
 
   return (

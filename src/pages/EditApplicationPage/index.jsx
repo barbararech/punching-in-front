@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Main, Container } from "../HomePage/styles";
-import { ResponsiveAppBar } from "../../components/Navbar/index";
-import NewCard from "../../components/NewCard/index";
-import { useState, useContext } from "react";
-import { useFormik } from "formik";
+import React, { useEffect } from 'react';
+import { Main, Container } from '../HomePage/styles';
+import { ResponsiveAppBar } from '../../components/Navbar/index';
+import NewCard from '../../components/NewApplication/index';
+import { useState, useContext } from 'react';
+import { useFormik } from 'formik';
 import {
   updateApplication,
   updateSteps,
@@ -11,9 +11,9 @@ import {
   viewApplication,
   viewStepsByApplicationId,
   viewAttachmentsByApplicationId,
-} from "../../services/api";
-import { HandlerContext } from "../../contexts/contextHandler";
-import { useNavigate, useParams } from "react-router-dom";
+} from '../../services/api';
+import { HandlerContext } from '../../contexts/contextHandler';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditApplicationPage() {
   const navigate = useNavigate();
@@ -29,13 +29,9 @@ export default function EditApplicationPage() {
 
   const [application, setApplication] = useState([]);
 
-  const [stepsGroup, setStepsGroup] = useState([
-    { name: "", deadline: "", itsFinished: "" },
-  ]);
+  const [stepsGroup, setStepsGroup] = useState([{ name: '', deadline: '', itsFinished: '' }]);
 
-  const [attachmentsGroup, setAttachmentsGroup] = useState([
-    { name: "", link: "", type: "" },
-  ]);
+  const [attachmentsGroup, setAttachmentsGroup] = useState([{ name: '', link: '', type: '' }]);
 
   useEffect(() => {
     async function getApplicationByid() {
@@ -44,10 +40,7 @@ export default function EditApplicationPage() {
         setApplication(responseApplication.application);
         const responseSteps = await viewStepsByApplicationId(id, config);
         setStepsGroup(responseSteps.steps);
-        const responseAttachments = await viewAttachmentsByApplicationId(
-          id,
-          config
-        );
+        const responseAttachments = await viewAttachmentsByApplicationId(id, config);
         setAttachmentsGroup(responseAttachments.attachments);
       } catch (error) {
         console.log(error);
@@ -83,32 +76,22 @@ export default function EditApplicationPage() {
       console.log(attachmentsData);
       await updateAttachments(attachmentsData, config);
 
-      alert("Application updated successfully!");
-      navigate("/home");
+      alert('Application updated successfully!');
+      navigate('/home');
     } catch (error) {
       console.log(error);
-      alert(
-        `New application wasn't created successfully! Error: ${error.message}`
-      );
+      alert(`New application wasn't created successfully! Error: ${error.message}`);
     }
   };
 
-  const {
-    values,
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    enableReinitialize,
-  } = useFormik({
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, enableReinitialize } = useFormik({
     initialValues: {
-      companyName: application.companyName || "",
-      roleName: application.roleName || "",
-      heardBack: application.heardBack || "",
-      priority: application.priority || "",
-      jobDescription: application.jobDescription || "",
-      observations: application.observations || "",
+      companyName: application.companyName || '',
+      roleName: application.roleName || '',
+      heardBack: application.heardBack || '',
+      priority: application.priority || '',
+      jobDescription: application.jobDescription || '',
+      observations: application.observations || '',
       steps: [stepsGroup],
       attachments: [attachmentsGroup],
     },

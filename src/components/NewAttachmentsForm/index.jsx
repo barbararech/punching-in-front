@@ -1,15 +1,8 @@
-import * as React from "react";
-import {
-  Typography,
-  TextField,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-} from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { ContainerTasks } from "../NewCard/styles";
+import * as React from 'react';
+import { Typography, TextField, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { ContainerTasks } from '../NewApplication/styles';
 
 export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
   let handleChange = (i, e) => {
@@ -19,10 +12,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
   };
 
   let addFormFields = () => {
-    setAttachmentsGroup([
-      ...attachmentsGroup,
-      { name: "", link: "", type: "" },
-    ]);
+    setAttachmentsGroup([...attachmentsGroup, { name: '', link: '', type: '' }]);
   };
 
   let removeFormFields = (i) => {
@@ -35,25 +25,17 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
     <ContainerTasks>
       <Typography className="subtitle" gutterBottom>
         Attachments
-        <button
-          className="buttonAdd"
-          type="button"
-          onClick={() => addFormFields()}
-        >
+        <button className="buttonAdd" type="button" onClick={() => addFormFields()}>
           <AddCircleOutlineIcon className="addIcon" />
         </button>
       </Typography>
-      <form >
+      <form>
         {attachmentsGroup.map((element, index) => (
           <>
             <Typography className="paragraph" gutterBottom>
               Attachment {index + 1}
               {index ? (
-                <button
-                  type="button"
-                  className="button remove"
-                  onClick={() => removeFormFields(index)}
-                >
+                <button type="button" className="button remove" onClick={() => removeFormFields(index)}>
                   <RemoveCircleOutlineIcon className="removeIcon" />
                 </button>
               ) : null}
@@ -67,7 +49,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                 color="success"
                 type="text"
                 name="name"
-                value={element.name || ""}
+                value={element.name || ''}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
                 required
@@ -79,7 +61,7 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                 color="success"
                 type="text"
                 name="link"
-                value={element.link || ""}
+                value={element.link || ''}
                 onChange={(e) => handleChange(index, e)}
                 fullWidth
                 required
@@ -91,18 +73,18 @@ export default function AttachmentsForm(attachmentsGroup, setAttachmentsGroup) {
                   labelId="type"
                   id="type"
                   name="type"
-                  value={element.type || ""}
+                  value={element.type || ''}
                   label="type"
                   onChange={(e) => handleChange(index, e)}
                   color="success"
                   fullWidth
                   required
                 >
-                  <MenuItem value={"resume"}>resume</MenuItem>
-                  <MenuItem value={"coverletter"}>cover letter</MenuItem>
-                  <MenuItem value={"portifolio"}>portifolio</MenuItem>
-                  <MenuItem value={"testAnswers"}>test answers</MenuItem>
-                  <MenuItem value={"others"}>others</MenuItem>
+                  <MenuItem value={'resume'}>resume</MenuItem>
+                  <MenuItem value={'coverletter'}>cover letter</MenuItem>
+                  <MenuItem value={'portifolio'}>portifolio</MenuItem>
+                  <MenuItem value={'testAnswers'}>test answers</MenuItem>
+                  <MenuItem value={'others'}>others</MenuItem>
                 </Select>
               </FormControl>
             </div>

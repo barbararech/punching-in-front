@@ -1,12 +1,5 @@
-import * as React from "react";
-import {
-  Box,
-  TextField,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-} from "@mui/material";
+import * as React from 'react';
+import { Box, TextField, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
 
 export default function ApplicationForm(
   companyName,
@@ -19,30 +12,18 @@ export default function ApplicationForm(
 ) {
   return (
     <>
-      {TextFields(
-        companyName,
-        roleName,
-        jobDescription,
-        observations,
-        handleChange
-      )}
+      {TextFields(companyName, roleName, jobDescription, observations, handleChange)}
       {SelectFields(priority, heardBack, handleChange)}
     </>
   );
 }
 
-function TextFields(
-  companyName,
-  roleName,
-  jobDescription,
-  observations,
-  handleChange
-) {
+function TextFields(companyName, roleName, jobDescription, observations, handleChange) {
   return (
     <Box
       component="form"
       sx={{
-        "& > :not(style)": { m: 1, width: "98%" },
+        '& > :not(style)': { m: 1, width: '98%' },
       }}
       noValidate
       autoComplete="off"
@@ -104,9 +85,9 @@ function SelectFields(priority, heardBack, handleChange) {
             color="success"
             required
           >
-            <MenuItem value={"high"}>high</MenuItem>
-            <MenuItem value={"medium"}>medium</MenuItem>
-            <MenuItem value={"low"}>low</MenuItem>
+            <MenuItem value={'high'}>high</MenuItem>
+            <MenuItem value={'medium'}>medium</MenuItem>
+            <MenuItem value={'low'}>low</MenuItem>
           </Select>
         </FormControl>
       </Box>
