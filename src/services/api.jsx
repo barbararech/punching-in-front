@@ -38,8 +38,15 @@ export async function createSteps(data, config) {
   const response = await api.post('/steps/new', data, config);
   return response.data;
 }
+
 export async function createAttachments(data, config) {
   const response = await api.post('/attachments/new', data, config);
+  return response.data;
+}
+
+export async function viewUserAttachments(config) {
+  const response = await api.get('/attachments/all', config);
+  console.log(response.data);
   return response.data;
 }
 
