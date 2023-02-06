@@ -1,13 +1,14 @@
 import React from 'react';
+import MyFilesCard from '../../components/MyFilesCard';
 import { ResponsiveAppBar } from '../../components/Navbar';
 import { Main, Container, Message } from '../HomePage/styles';
 
-export default function MyResumesPage() {
+export default function MyFilesPage() {
   return (
     <Main>
       <Container>
         <ResponsiveAppBar />
-        <Message>coming soon!</Message>
+      <MyFilesCard />
       </Container>
     </Main>
   );

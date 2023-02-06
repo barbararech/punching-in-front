@@ -7,7 +7,7 @@ import NewApplicationPage from './pages/NewApplicationPage';
 import ArchivePage from './pages/ArchivePage/index';
 import EditApplicationPage from './pages/EditApplicationPage/index';
 import TipsPage from './pages/TipsPage/index';
-import MyResumesPage from './pages/MyResumesPage';
+import MyFilesPage from './pages/MyFilesPage';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/archives" element={<ArchivePage />} />
           <Route path="/applications/:id/edit" element={<EditApplicationPage />} />
           <Route path="/tips" element={<TipsPage />} />
-          <Route path="/my-resumes" element={<MyResumesPage />} />
+          <Route path="/my-files" element={<MyFilesPage />} />
         </Routes>
       </BrowserRouter>
     </HandlerProvider>

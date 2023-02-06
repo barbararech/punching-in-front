@@ -5,12 +5,12 @@ const api = axios.create({
 });
 
 export async function createUser(data) {
-  const response = await api.post('/signup', data);
+  const response = await api.post('/sign-up', data);
   return response.data;
 }
 
 export async function signInUser(data) {
-  const response = await api.post('/signin', data);
+  const response = await api.post('/sign-in', data);
   return response.data;
 }
 

@@ -59,9 +59,9 @@ export default function TemporaryDrawer() {
 }
 
 function RenderItemsMenu() {
-  const itemsMenu = ['New Application', 'Home', 'Archives', 'My resumes', 'Job application tips'];
+  const itemsMenu = ['New Application', 'Home', 'Archives', 'My files', 'Job application tips'];
 
-  const linksMenu = ['/newapplication', '/home', '/archives', '/my-resumes', '/tips'];
+  const linksMenu = ['/newapplication', '/home', '/archives', '/my-files', '/tips'];
 
   const iconsMenu = [<PostAddIcon />, <HomeIcon />, <ArchiveIcon />, <ArticleIcon />, <TipsAndUpdatesIcon />];
 
